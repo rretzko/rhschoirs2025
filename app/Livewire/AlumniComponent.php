@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class AlumniComponent extends Component
@@ -23,6 +24,11 @@ class AlumniComponent extends Component
             'classes' => $this->getClasses(),
             'students' => $this->getStudents(),
         ]);
+    }
+
+    public function updatedClassOf(): void
+    {
+        $this->reset('search');
     }
 
     private function getClasses(): array
@@ -49,8 +55,10 @@ class AlumniComponent extends Component
 
         return Student::query()
             ->where('class_of', $operand, $classOf)
-            ->where('last_name', 'LIKE', $search)
-            ->orWhere('first_name', 'LIKE', $search)
+            ->where(function ($query) use($search){
+                $query->where('last_name', 'LIKE', $search)
+                    ->orWhere('first_name', 'LIKE', $search);
+            })
             ->orderBy('last_name')
             ->orderBy('first_name')
             ->get()

@@ -8,9 +8,9 @@ environments:
         runtime: 'php-8.3:al2'
         database: rhschoirs2025p
         build:
-            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'set COMPOSER_MIRROR_PATH_REPOS=1 && composer install'
             - 'php artisan event:cache'
-            - 'npm ci && npm run build && rm -rf node_modules'
+            - 'npm ci && npm run build && rd /s /q "node_modules"'
     staging:
         memory: 1024
         cli-memory: 512

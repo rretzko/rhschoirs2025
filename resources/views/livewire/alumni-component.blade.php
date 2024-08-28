@@ -26,7 +26,7 @@
 
     {{-- SEARCH --}}
     <div class="my-2 bg-gray-100 w-full py-1">
-        <input wire:model.live.debounce.500ms='search' class="w-1/3 ml-2 h-8 " type="text" placeholder="Search by name"/>
+        <input wire:model.live.debounce.500ms='search' class="w-2/3 sm:w-1/3 ml-2 h-8 " type="text" placeholder="Search by name"/>
     </div>
 
     <div>Search: {{ $search }}</div>

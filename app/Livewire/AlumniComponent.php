@@ -31,6 +31,11 @@ class AlumniComponent extends Component
         $this->reset('search');
     }
 
+    public function updatedSearch(): void
+    {
+        $this->reset('classOf');
+    }
+
     private function getClasses(): array
     {
         return DB::table('students')

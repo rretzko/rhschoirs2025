@@ -3,7 +3,7 @@
         td,th{border: 1px solid lightgray; padding: 0 0.25rem;}
     </style>
 
-    {{-- CLASSES --}}
+    {{-- CLASS BUTTONS --}}
     <div class="flex flex-row flex-wrap gap-2 w-11/12 my-2">
         <button
             wire:click="$set('classOf', '-1')"
@@ -23,6 +23,13 @@
             </button>
         @endforeach
     </div>
+
+    {{-- SEARCH --}}
+    <div class="my-2 bg-gray-100 w-full py-1">
+        <input wire:model.live.debounce.500ms='search' class="w-1/3 ml-2 h-8 " type="text" placeholder="Search by name"/>
+    </div>
+
+    <div>Search: {{ $search }}</div>
 
     <table>
         <thead>
@@ -46,7 +53,14 @@
                 {{ $student['maiden_name'] }}) @endif
             </td>
             <td class="text-center">
-                {{ $student['class_of'] }}
+                <button
+                    wire:click="$set('classOf', {{ $student['class_of'] }})"
+                    class="text-blue-600 hover:underline"
+                    type="button"
+                    title="Class of {{ $class }} alumni"
+                >
+                    {{ $student['class_of'] }}
+                </button>
             </td>
         </tr>
     @endforeach

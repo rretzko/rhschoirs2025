@@ -9,6 +9,7 @@ use Livewire\Component;
 class AlumniComponent extends Component
 {
     public int $classOf;
+    public string $search = '';
 
     public function mount()
     {
@@ -44,8 +45,12 @@ class AlumniComponent extends Component
             $classOf = $this->classOf;
         }
 
+        $search = '%' . $this->search . '%';
+
         return Student::query()
             ->where('class_of', $operand, $classOf)
+            ->where('last_name', 'LIKE', $search)
+            ->orWhere('first_name', 'LIKE', $search)
             ->orderBy('last_name')
             ->orderBy('first_name')
             ->get()

@@ -2,7 +2,7 @@ id: 64763
 name: rhschoirs2025
 environments:
     production:
-        domain: rhschoirs.net
+#        domain: rhschoirs.net
         memory: 1024
         cli-memory: 512
         runtime: 'php-8.3:al2'
